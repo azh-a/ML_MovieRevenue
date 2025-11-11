@@ -1,7 +1,7 @@
 # Movie Revenue Prediction
 
 # Datasets
-Movie dataset: https://www.kaggle.com/datasets/utkarshx27/movies-dataset
+Movie dataset: https://www.kaggle.com/datasets/utkarshx27/movies-dataset   <-- `movie_dataset.csv`
 
 Economic dataset: Federal Reserve Economic Data (FRED)
 GDP: https://fred.stlouisfed.org/series/GDP#
