@@ -8,5 +8,7 @@ Inflation: https://fred.stlouisfed.org/series/FPCPITOTLZGUSA
 
 
 ```
-int y
+import pandas as pd
+
+df = pd.read_csv("movie_dataset")
 ```
