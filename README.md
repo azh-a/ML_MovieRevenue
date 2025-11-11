@@ -10,6 +10,7 @@ GDP: https://fred.stlouisfed.org/series/GDP#
 Inflation: https://fred.stlouisfed.org/series/FPCPITOTLZGUSA
 
 
+Data Preprocessing
 ```
 import pandas as pd
 
