@@ -45,3 +45,47 @@ merged.head()
 ```
 
 # Linear Regression
+```
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+class MyLinearModel:
+    def __init__(self):
+        self.model = LinearRegression()
+    
+    def fit(self, X, y):
+        """Train the model on data (X, y)."""
+        self.model.fit(X, y)
+    
+    def predict(self, X):
+        """Predict outputs for new inputs X."""
+        return self.model.predict(X)
+    
+    def evaluate(self, X, y):
+        """
+        Compute performance metrics:
+          - R² (coefficient of determination)
+          - RMSE (root mean squared error)
+          - MAE (mean absolute error)
+        """
+        y_pred = self.predict(X)
+        r2 = r2_score(y, y_pred)
+        rmse = mean_squared_error(y, y_pred, squared=False)
+        mae = mean_absolute_error(y, y_pred)
+        return {"R²": r2, "RMSE": rmse, "MAE": mae}
+    
+    def summary(self):
+        """Display learned coefficients and intercept."""
+        print("Intercept:", self.model.intercept_)
+        print("Coefficients:", self.model.coef_)
+
+
+df = df = pd.read_csv("merged_data.csv")
+X = df[c("budget", "runtime", "Year", "Month", "GDP", "INFLATION", "INTREST_RATE")]
+y = df["revenue"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=42)
+
+```
