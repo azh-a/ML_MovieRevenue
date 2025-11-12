@@ -14,7 +14,7 @@ Inflation: https://fred.stlouisfed.org/series/FPCPITOTLZGUSA
 ```
 import pandas as pd
 
-df = pd.read_csv("movie_dataset")
+df = pd.read_csv("movie_dataset.csv")
 
 df['release_date'] = pd.to_datetime(df['release_date'])
 df['Year'] = df['release_date'].dt.year
