@@ -39,3 +39,5 @@ merged = pd.merge(df, fred, on='year', how='left')
 
 merged.head()
 ```
+
+# Linear Regression
