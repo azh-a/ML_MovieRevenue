@@ -9,6 +9,8 @@ GDP: https://fred.stlouisfed.org/series/GDP#
 
 Inflation: https://fred.stlouisfed.org/series/FPCPITOTLZGUSA
 
+Interest Rates: https://fred.stlouisfed.org/series/INTDSRUSM193N#
+
 
 # Data Preprocessing
 ```
