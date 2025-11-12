@@ -39,7 +39,7 @@ fred['year'] = pd.to_datetime(fred['observation_date']).dt.year
 
 merged = pd.merge(df, fred, on='year', how='left')
 
-# merged.to_csv('merged.csv', index=False) #<-- cleaned movie/econ dataset
+# merged.to_csv('merged_data.csv', index=False) #<-- cleaned movie/econ dataset
 
 merged.head()
 ```
