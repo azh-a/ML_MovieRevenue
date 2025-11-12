@@ -82,7 +82,7 @@ class MyLinearModel:
         print("Coefficients:", self.model.coef_)
 
 
-df = df = pd.read_csv("merged_data.csv")
+df = pd.read_csv("merged_data.csv")
 X = df[c("budget", "runtime", "Year", "Month", "GDP", "INFLATION", "INTREST_RATE")]
 y = df["revenue"]
 
