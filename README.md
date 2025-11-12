@@ -1,4 +1,4 @@
-# Movie Revenue Prediction
+# Movie Revenue Forecasting
 
 # Datasets
 Movie dataset: https://www.kaggle.com/datasets/utkarshx27/movies-dataset   <-- `movie_dataset.csv`
