@@ -26,7 +26,7 @@ df = df.drop('status', axis=1)
 df = df.drop('vote_average', axis=1)
 df = df.drop('vote_count', axis=1)
 
-# df.to_csv('movie_only.csv', index=False) <-- cleaned movie only dataset
+# df.to_csv('movie_only.csv', index=False) #<-- cleaned movie only dataset
 ```
 
 ```
