@@ -1,8 +1,9 @@
 # Movie Revenue Forecasting
 
 # Milestone 1 Progress
-- Our first step was to merge our movie dataset with our economic datasets. We got data from 1960-2020 for the US GDP, Inflation Rate, and Interest Rate. We first merged these three datasets into one which you can find in `FRED_Data_all.csv` file in our datasets folder. Then, we merged this file with our movie dataset by mapping the release year of each movie to its corresponding economic variables. So a movie released in 2015 now has data for our three economic variables from 2015. 
-- Our next step was to run a simple Linear Regression (after some preprocessing). 
+- Our first step was to merge our movie dataset with our economic datasets. We got data from 1960-2020 for the US GDP, Inflation Rate, and Interest Rate. We first merged these three datasets into one which you can find in FRED_Data_all.csv file in our datasets folder. Then, we merged this file with our movie dataset by mapping the release year of each movie to its corresponding economic variables. So a movie released in 2015 now has data for our three economic variables from 2015. 
+- Our next step was to clean our data and run a Linear Regression model. We dropped a handfull of values that we found unimportant, and then merged our data as described above. We one-hot encoded our genres so that we can tag movies approprately, then added these values to the merged dataset as well. Along with that, we calculated the past revenue for the directors to avoid leakage but still include a directors past success in our model. And then lastly we normalized our numerical values. Then we ran our Linear Regression, which had a medicore performace. The results are at the bottom.
+- Moving forward, we want to run multiple different models and explore other variables we can add to our model.
 
 # Datasets
 Movie dataset: https://www.kaggle.com/datasets/utkarshx27/movies-dataset   <-- `movie_dataset.csv`
