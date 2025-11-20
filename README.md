@@ -32,16 +32,46 @@ df = df.drop('vote_count', axis=1)
 ```
 
 ```
-fred = pd.read_csv("FRED_Data_all.csv")
+from sklearn.preprocessing import MultiLabelBinarizer
 
+fred = pd.read_csv("FRED_Data_all.csv")
+df = pd.read_csv('movie_only.csv')
+
+# merging
 df['year'] = pd.to_datetime(df['release_date'], errors='coerce').dt.year
 fred['year'] = pd.to_datetime(fred['observation_date']).dt.year
+df = pd.merge(df, fred, on='year', how='left')
 
-merged = pd.merge(df, fred, on='year', how='left')
+df = df[df['Year'] >= 1960]  # FRED doesn't have data older than 1960
+df = df[df['budget'] > 0]    # weird cols
 
-# merged.to_csv('merged_data.csv', index=False) #<-- cleaned movie/econ dataset
+df.drop("year", axis = 1)
 
-merged.head()
+
+print(df.isna().any())
+df['runtime'].fillna(df['runtime'].mean(), inplace=True)  # fill in empty runtime
+
+# deal with genres col
+df = df.dropna(subset=['genres']).copy()
+df['genres'] = df['genres'].fillna('').astype(str).str.split()
+mlb = MultiLabelBinarizer()
+genre_dummies = pd.DataFrame(
+    mlb.fit_transform(df['genres']),
+    columns=mlb.classes_,
+    index=df.index
+)
+df = pd.concat([df, genre_dummies], axis=1)
+
+# past mean revenue of directors
+df = df.sort_values(["director", "Year", "Month"])
+df["director_past_avg_rev"] = (
+    df.groupby("director")["revenue"]
+      .apply(lambda s: s.shift().expanding().mean())
+      .reset_index(level=0, drop=True)
+)
+df["director_past_avg_rev"] = df["director_past_avg_rev"].fillna(0)
+
+df.to_csv('merged_da
 ```
 
 # Linear Regression
