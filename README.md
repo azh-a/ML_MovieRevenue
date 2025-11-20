@@ -146,17 +146,12 @@ genre_dummies = pd.DataFrame(mlb.fit_transform(df['genres']),
 #df['director_mean_revenue'] = df['director_mean_revenue'].fillna(global_mean)
 
 
-
-# If you have Year and Month, make a sortable date; otherwise just use Year.
-# (Replace Month with 1 if you don't have it.)
 df['Month'] = df.get('Month', 1)
 df['release_date'] = pd.to_datetime(dict(year=df['Year'], month=df['Month'], day=1))
 
-# Sort within each director by release date so "past" is well-defined.
 df = df.sort_values(['director', 'release_date'])
 
-# Compute per-director cumulative mean of past revenues:
-# expanding().mean() is over [0..i], so shift(1) makes it [0..i-1] (i.e., strictly past)
+
 df['director_past_mean_revenue'] = (
     df.groupby('director')['revenue']
       .transform(lambda s: s.expanding().mean().shift(1))
