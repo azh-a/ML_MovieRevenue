@@ -1,7 +1,7 @@
 # Movie Revenue Forecasting
 
 # Milestone 1 Progress
-- We
+- Our first step was to merge our movie dataset with our economic datasets. We got data from 1960-2020 for the US GDP, Inflation Rate, and Interest Rate. We first merged these three datasets into one 
 
 # Datasets
 Movie dataset: https://www.kaggle.com/datasets/utkarshx27/movies-dataset   <-- `movie_dataset.csv`
