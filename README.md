@@ -1,5 +1,8 @@
 # Movie Revenue Forecasting
 
+# Milestone 1 Progress
+- We
+
 # Datasets
 Movie dataset: https://www.kaggle.com/datasets/utkarshx27/movies-dataset   <-- `movie_dataset.csv`
 
