@@ -33,6 +33,8 @@ df = df.drop('vote_count', axis=1)
 
 ```
 from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
 
 fred = pd.read_csv("FRED_Data_all.csv")
 df = pd.read_csv('movie_only.csv')
@@ -71,7 +73,14 @@ df["director_past_avg_rev"] = (
 )
 df["director_past_avg_rev"] = df["director_past_avg_rev"].fillna(0)
 
-df.to_csv('merged_da
+
+# normalize
+scaler = StandardScaler()
+num_cols = ['budget','revenue','runtime','director_past_avg_rev', 'GDP','INFLATION','INTEREST_RATE']
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+df.to_csv('merged_data.csv', index=False) #<-- cleaned movie/econ dataset
+df.head()
 ```
 
 # Linear Regression
