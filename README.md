@@ -83,7 +83,7 @@ import numpy as np
 from sklearn.preprocessing import MultiLabelBinarizer
 
 
-class MyLinearModel:
+class LinearModel:
     def __init__(self):
         self.model = LinearRegression()
     
@@ -98,9 +98,9 @@ class MyLinearModel:
     def evaluate(self, X, y):
         """
         Compute performance metrics:
-          - R² (coefficient of determination)
-          - RMSE (root mean squared error)
-          - MAE (mean absolute error)
+          - R² 
+          - RMSE 
+          - MAE 
         """
         y_pred = self.predict(X)
         r2 = r2_score(y, y_pred)
@@ -114,77 +114,23 @@ class MyLinearModel:
         print("Coefficients:", self.model.coef_)
 
 
-df = pd.read_csv("merged_data.csv")
-df.head()
-df = df[df['Year'] >= 1960]
-df = df[df['budget'] > 0]
 
-df.drop("year", axis = 1)
-print(df.isna().any())
-df['runtime'].fillna(df['runtime'].mean(), inplace=True)
-
-
-
-# Split the string column into lists
-df['genres'] = df['genres'].fillna('').apply(lambda x: x.split())
-
-# One-hot encode all unique genres
-mlb = MultiLabelBinarizer()
-genre_dummies = pd.DataFrame(mlb.fit_transform(df['genres']),
-                             columns=mlb.classes_,
-                             index=df.index)
-
-
-
-# Compute average revenue per director
-#director_mean_rev = df.groupby('director')['revenue'].mean()
-
-# Map this back to df as a new numeric column
-#df['director_mean_revenue'] = df['director'].map(director_mean_rev)
-
-#global_mean = df['revenue'].mean()
-#df['director_mean_revenue'] = df['director_mean_revenue'].fillna(global_mean)
-
-
-df['Month'] = df.get('Month', 1)
-df['release_date'] = pd.to_datetime(dict(year=df['Year'], month=df['Month'], day=1))
-
-df = df.sort_values(['director', 'release_date'])
-
-
-df['director_past_mean_revenue'] = (
-    df.groupby('director')['revenue']
-      .transform(lambda s: s.expanding().mean().shift(1))
-)
-
-# Cold-start directors (first movie) -> fill with a sensible prior (e.g., global mean)
-global_mean = df['revenue'].mean()
-df['director_past_mean_revenue'] = df['director_past_mean_revenue'].fillna(global_mean)
-
-# Use this feature instead of the leaky one:
-X = df[["budget","runtime","Year","Month","GDP","INFLATION","INTEREST_RATE","director_past_mean_revenue"]]
-
-
-
-#X = df[["budget", "runtime", "Year", "Month", "GDP", "INFLATION", "INTEREST_RATE", "director_mean_revenue"]]
-
-
+# features
+X = df[["budget","runtime","Year","Month","GDP","INFLATION","INTEREST_RATE","director_past_avg_rev"]]
 X = pd.concat([X, genre_dummies], axis=1)
-print(X.head())
-
+#print(X.head())
+#print(X.isna().any())
 
 y = df["revenue"]
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=42)
 
-lm = MyLinearModel()
+lm = LinearModel()
 lm.fit(X_train,y_train)
 lm.summary()
 preds = lm.predict(X_test)
 
 metrics = lm.evaluate(X_test,y_test)
 print("Model Performance: ", metrics)
-
 ```
 
 # Current Results
