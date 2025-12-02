@@ -254,7 +254,7 @@ for name, imp in feat_importance[:20]:
 ```
 
 # Current Results
-<u>Linear Regression:</u>
+Linear Regression:
 
 Intercept: 33.26534681814592
 
@@ -266,7 +266,8 @@ Coefficients: [ 0.59224283  0.12185578 -0.01660025  0.00134086  0.14073538  0.02
   
 Model Performance:  {'R²': 0.5543968272471183, 'RMSE': 0.6757270536982963, 'MAE': 0.4061342071169473}
 
-<u>XGBoost:</u>
+-----------------------------------------------------------------------
+XGBoost:
 
 Best params: {'subsample': 0.7, 'reg_lambda': 5, 'reg_alpha': 0.05, 'n_estimators': 600, 'min_child_weight': 8, 'max_depth': 3, 'learning_rate': 0.01, 'colsample_bytree': 0.6}
 
@@ -278,26 +279,45 @@ Test RMSE: 0.6407135996465826
 
 Test MAE:  0.38540209135000125
 
-
+-
 Top 20 features:
 
 budget                         0.2057
+
 Adventure                      0.1001
+
 director_past_avg_rev          0.0710
+
 Fantasy                        0.0593
+
 Animation                      0.0562
+
 runtime                        0.0555
+
 Drama                          0.0521
+
 Science                        0.0497
+
 Family                         0.0402
+
 Action                         0.0377
+
 INTEREST_RATE                  0.0321
+
 Year                           0.0303
+
 INFLATION                      0.0270
+
 GDP                            0.0262
+
 Fiction                        0.0261
+
 Thriller                       0.0256
+
 Month                          0.0217
+
 History                        0.0183
+
 Comedy                         0.0173
+
 Mystery                        0.0143
