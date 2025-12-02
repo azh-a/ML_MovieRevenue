@@ -147,7 +147,114 @@ metrics = lm.evaluate(X_test,y_test)
 print("Model Performance: ", metrics)
 ```
 
+XGBoost
+```
+from xgboost import XGBRegressor
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.model_selection import RandomizedSearchCV
+
+class XGBModel:
+    def __init__(self):
+        self.model = XGBRegressor(
+            n_estimators=500,
+            learning_rate=0.05,
+            max_depth=6,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            objective="reg:squarederror",
+            random_state=42,
+            n_jobs=-1,
+        )
+    
+    def fit(self, X, y):
+        self.model.fit(X, y)
+    
+    def predict(self, X):
+        return self.model.predict(X)
+    
+    def evaluate(self, X, y):
+        y_pred = self.predict(X)
+        r2 = r2_score(y, y_pred)
+        rmse = mean_squared_error(y, y_pred, squared=False)
+        mae = mean_absolute_error(y, y_pred)
+        return {"R²": r2, "RMSE": rmse, "MAE": mae}
+    
+    def summary(self, feature_names=None, top_k=20):
+        importances = self.model.feature_importances_
+        if feature_names is None:
+            feature_names = [f"f{i}" for i in range(len(importances))]
+        
+        feats = list(zip(feature_names, importances))
+        feats = sorted(feats, key=lambda x: x[1], reverse=True)
+        
+        print(f"Top {top_k} features by importance:")
+        for name, imp in feats[:top_k]:
+            print(f"{name}: {imp:.4f}")
+
+# Training with hyperparameter tuning & cross-validation 
+xgb = XGBRegressor(
+    objective="reg:squarederror",
+    random_state=42,
+    n_jobs=-1,
+)
+
+# Hyperparameter grid
+param_dist = {
+    "n_estimators":     [200, 400, 600, 800],
+    "max_depth":        [3, 4, 5, 6, 8],
+    "learning_rate":    [0.01, 0.03, 0.05, 0.1, 0.001, 0.005],
+    "subsample":        [0.6, 0.8, 1.0, 0.7],
+    "colsample_bytree": [0.6, 0.8, 1.0, 0.7],
+    "min_child_weight": [1, 3, 5, 10, 2, 8],
+    "reg_alpha":        [0, 0.01, 0.1, 1, 0.05],   
+    "reg_lambda":       [0.1, 1, 5, 10, 0.5, 2],      
+}
+
+# 3-fold CV (randomized)
+random_search = RandomizedSearchCV(
+    estimator=xgb,
+    param_distributions=param_dist,
+    n_iter=60,                      
+    scoring="neg_root_mean_squared_error",
+    cv=3,
+    verbose=1,
+    n_jobs=-1,
+    random_state=42,
+)
+
+random_search.fit(X_train, y_train)
+
+print("Best params:", random_search.best_params_)
+print("Best CV RMSE:", -random_search.best_score_)
+
+# evaluate best model on test 
+best_xgb = random_search.best_estimator_
+
+y_pred = best_xgb.predict(X_test)
+
+r2 = r2_score(y_test, y_pred)
+rmse = mean_squared_error(y_test, y_pred, squared=False)
+mae = mean_absolute_error(y_test, y_pred)
+
+print("Test R²:  ", r2)
+print("Test RMSE:", rmse)
+print("Test MAE: ", mae)
+
+# see top 20 most important features 
+importances = best_xgb.feature_importances_
+feat_importance = sorted(
+    zip(X.columns, importances),
+    key=lambda x: x[1],
+    reverse=True
+)
+
+print("\nTop 20 features:")
+for name, imp in feat_importance[:20]:
+    print(f"{name:30s} {imp:.4f}")
+```
+
 # Current Results
+<u>Linear Regression:</u>
 Intercept: 33.26534681814592
 
 Coefficients: [ 0.59224283  0.12185578 -0.01660025  0.00134086  0.14073538  0.02538885
@@ -157,3 +264,32 @@ Coefficients: [ 0.59224283  0.12185578 -0.01660025  0.00134086  0.14073538  0.02
   0.05035054 -0.00382325  0.09111763 -0.03687254 -0.13805464 -0.38399001]
   
 Model Performance:  {'R²': 0.5543968272471183, 'RMSE': 0.6757270536982963, 'MAE': 0.4061342071169473}
+
+<u>XGBoost:</u>
+Best params: {'subsample': 0.7, 'reg_lambda': 5, 'reg_alpha': 0.05, 'n_estimators': 600, 'min_child_weight': 8, 'max_depth': 3, 'learning_rate': 0.01, 'colsample_bytree': 0.6}
+Best CV RMSE: 0.6825894206926216
+Test R²:   0.5993791525289482
+Test RMSE: 0.6407135996465826
+Test MAE:  0.38540209135000125
+
+Top 20 features:
+budget                         0.2057
+Adventure                      0.1001
+director_past_avg_rev          0.0710
+Fantasy                        0.0593
+Animation                      0.0562
+runtime                        0.0555
+Drama                          0.0521
+Science                        0.0497
+Family                         0.0402
+Action                         0.0377
+INTEREST_RATE                  0.0321
+Year                           0.0303
+INFLATION                      0.0270
+GDP                            0.0262
+Fiction                        0.0261
+Thriller                       0.0256
+Month                          0.0217
+History                        0.0183
+Comedy                         0.0173
+Mystery                        0.0143
