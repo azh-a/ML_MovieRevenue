@@ -255,6 +255,7 @@ for name, imp in feat_importance[:20]:
 
 # Current Results
 <u>Linear Regression:</u>
+
 Intercept: 33.26534681814592
 
 Coefficients: [ 0.59224283  0.12185578 -0.01660025  0.00134086  0.14073538  0.02538885
@@ -266,13 +267,20 @@ Coefficients: [ 0.59224283  0.12185578 -0.01660025  0.00134086  0.14073538  0.02
 Model Performance:  {'R²': 0.5543968272471183, 'RMSE': 0.6757270536982963, 'MAE': 0.4061342071169473}
 
 <u>XGBoost:</u>
+
 Best params: {'subsample': 0.7, 'reg_lambda': 5, 'reg_alpha': 0.05, 'n_estimators': 600, 'min_child_weight': 8, 'max_depth': 3, 'learning_rate': 0.01, 'colsample_bytree': 0.6}
+
 Best CV RMSE: 0.6825894206926216
+
 Test R²:   0.5993791525289482
+
 Test RMSE: 0.6407135996465826
+
 Test MAE:  0.38540209135000125
 
+
 Top 20 features:
+
 budget                         0.2057
 Adventure                      0.1001
 director_past_avg_rev          0.0710
