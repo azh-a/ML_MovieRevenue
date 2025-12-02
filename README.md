@@ -279,45 +279,25 @@ Test RMSE: 0.6407135996465826
 
 Test MAE:  0.38540209135000125
 
-\n
 Top 20 features:
 
-budget                         0.2057
-
-Adventure                      0.1001
-
-director_past_avg_rev          0.0710
-
-Fantasy                        0.0593
-
-Animation                      0.0562
-
-runtime                        0.0555
-
-Drama                          0.0521
-
-Science                        0.0497
-
-Family                         0.0402
-
-Action                         0.0377
-
-INTEREST_RATE                  0.0321
-
-Year                           0.0303
-
-INFLATION                      0.0270
-
-GDP                            0.0262
-
-Fiction                        0.0261
-
-Thriller                       0.0256
-
-Month                          0.0217
-
-History                        0.0183
-
-Comedy                         0.0173
-
-Mystery                        0.0143
+- budget                         0.2057
+- Adventure                      0.1001
+- director_past_avg_rev          0.0710
+- Fantasy                        0.0593
+- Animation                      0.0562
+- runtime                        0.0555
+- Drama                          0.0521
+- Science                        0.0497
+- Family                         0.0402
+- Action                         0.0377
+- INTEREST_RATE                  0.0321
+- Year                           0.0303
+- INFLATION                      0.0270
+- GDP                            0.0262
+- Fiction                        0.0261
+- Thriller                       0.0256
+- Month                          0.0217
+- History                        0.0183
+- Comedy                         0.0173
+- Mystery                        0.0143
