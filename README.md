@@ -123,8 +123,10 @@ class LinearModel:
 
 
 # features
-X = df[["budget","runtime","Year","Month","GDP","INFLATION","INTEREST_RATE","director_past_avg_rev"]]
-X = pd.concat([X, genre_dummies], axis=1)
+X = df[['budget','runtime','Year','Month','GDP','INFLATION','INTEREST_RATE','director_past_avg_rev', 
+        'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 
+        'Fiction', 'Foreign', 'History', 'Horror', 'Movie', 'Music', 'Mystery', 'Romance', 'Science', 'TV', 
+        'Thriller', 'War', 'Western']]
 #print(X.head())
 #print(X.isna().any())
 
