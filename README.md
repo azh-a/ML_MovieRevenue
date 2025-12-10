@@ -4,7 +4,12 @@
 # Replication Instructions
 - 
 # Future Directions
-- The most influential next step would be to include more features from the movies into our model. Things like directors, cast, and production companies are all incredibly important factors in a movies success, but are difficult to incorporate into a model since there are so many different people and companies that go into making each movie. The inclusion of factors like this would help our predictions. Another path for the future would be to run this model on different movie and economic datasets from other countries. It would be interesting to see how our model would perform on another countries statistics and data. 
+- The most influential next step would be to include more features from the movies into our model. Things like directors, cast, and production companies are all incredibly important factors in a movies success, but are difficult to incorporate into a model since there are so many different people and companies that go into making each movie. The inclusion of factors like this would help our predictions. Another path for the future would be to run this model on different movie and economic datasets from other countries. It would be interesting to see how our model would perform on another countries statistics and data.
+# Contributions
+- Vincent
+-     eeee
+- Angie
+-     www
 
 
 # Milestone 1 Progress
