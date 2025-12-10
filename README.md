@@ -1,4 +1,9 @@
 # Movie Revenue Forecasting
+# Overview
+- Our project aims to address the broad issue of future revenue prediction. Specifically, we want to predict how much revenue a film is likely to make based on features including budget, runtime, genre, and directors past revenue. We also want to incorporate the elements of the current US economy into our model, to also possibly help predict the success of a movie. We incorporated the past 80 years of the US GDP, inflation, and interest rate into out model. We found that in general this task is challenging espicially when excluding variables that relate to the movies success and popularity. We acheived an R^2 value of 0.6 with our best model, which means our model can make educated guesses, but is stil not very accurate.
+# Replication Instructions
+- 
+
 
 # Milestone 1 Progress
 - Our first step was to merge our movie dataset with our economic datasets. We got data from 1960-2020 for the US GDP, Inflation Rate, and Interest Rate. We first merged these three datasets into one which you can find in FRED_Data_all.csv file in our datasets folder. Then, we merged this file with our movie dataset by mapping the release year of each movie to its corresponding economic variables. So a movie released in 2015 now has data for our three economic variables from 2015. 
