@@ -11,7 +11,7 @@
 - 
 
 
-# # Hello
+# Everything Below This Point are Previous Steps
 
 # Milestone 1 Progress
 - Our first step was to merge our movie dataset with our economic datasets. We got data from 1960-2020 for the US GDP, Inflation Rate, and Interest Rate. We first merged these three datasets into one which you can find in FRED_Data_all.csv file in our datasets folder. Then, we merged this file with our movie dataset by mapping the release year of each movie to its corresponding economic variables. So a movie released in 2015 now has data for our three economic variables from 2015. 
