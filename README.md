@@ -1,15 +1,14 @@
 # Movie Revenue Forecasting
 # Overview
-- Our project aims to address the broad issue of future revenue prediction. Specifically, we want to predict how much revenue a film is likely to make based on features including budget, runtime, genre, and directors past revenue. We also want to incorporate the elements of the current US economy into our model, to also possibly help predict the success of a movie. We incorporated the past 80 years of the US GDP, inflation, and interest rate into out model. We found that in general this task is challenging espicially when excluding variables that relate to the movies success and popularity. We acheived an R^2 value of 0.6 with our best model, which means our model can make educated guesses, but is still not extremely accurate.
+- Our project aims to address the broad issue of future revenue prediction. Specifically, we want to predict how much revenue a film is likely to make based on features including budget, runtime, genre, and directors past revenue. We also want to incorporate elements of the US economy into our model to possibly help predict the success of a movie. We incorporated the past 80 years of the US GDP, inflation, and interest rate. We found that in general this task is challenging espicially when excluding variables that relate to the movies success and popularity. It is also difficult to quantify things like directors, casts, plots, and production companies into our model, which we know would help our end results. We acheived an R^2 value of 0.6 with our best model, which means our model can make educated guesses, but is still not extremely accurate. 
 # Replication Instructions
 - 
 # Future Directions
 - The most influential next step would be to include more features from the movies into our model. Things like directors, cast, and production companies are all incredibly important factors in a movies success, but are difficult to incorporate into a model since there are so many different people and companies that go into making each movie. The inclusion of factors like this would help our predictions. Another path for the future would be to run this model on different movie and economic datasets from other countries. It would be interesting to see how our model would perform on another countries statistics and data.
 # Contributions
-- Vincent
-- -dnlkdn
+- Vincent - Researched background information on the subject, found similar studies that helped us decide how to make our model and gave us material to compare to. Got economic datasets off FRED for the annual time periods we needed. Merged these economic datasets with our movie dataset so that each movie had economic data based on its release year. Helped test our early Linear Regression model by tweaking features and normalizing data. Helped deal with the genre situation where we ended up one-hot encoding to properly tag movies. Also fought for a while with our past directors revenue feature which was hard to get it to only incorporate a directors previous earnings. Translated a lot of our work and results into our poster, mostly the intro, background, and summary+conclusion sections.           
 - Angie
--     www
+- 
 
 
 # Milestone 1 Progress
